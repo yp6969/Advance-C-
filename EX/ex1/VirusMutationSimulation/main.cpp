@@ -17,12 +17,19 @@ int main(int argc, char *argv[]) {
     int dimension;
     string target;
     int generations;
+    vector<string> virus_list;
+    int num_of_viruses;
+
     parse_config(config, dimension, target, generations);
+    parse_viruses(first_gen, dimension, num_of_viruses, virus_list);
+
+
 
     cout << dimension << " " << target << " " << generations << " " << endl;
-//    istream_iterator<char> config_iter(config);
-//    istream_iterator<char> first_gen_iter(first_gen);
-
+    cout << num_of_viruses << endl;
+    for(string& s: virus_list){
+        cout << s << endl;
+    }
 
     return 0;
 }

@@ -21,11 +21,13 @@
 using namespace std;
 
 
-void parse_viruses(ifstream& input);
+void parse_viruses(ifstream& input, int dim, int& num_of_viruses, vector<string>& virus_list);
+void parse_virus_list(ifstream& input, int dim, vector<string>& virus_list);
 void parse_config(ifstream& input, int& dim, string& target, int& max_generations);
 bool is_number(const std::string& s);
 void inputError(const string& s);
-void parse_gen(const string& s, string& t);
+void parse_gen(stringstream& ss, string& target);
 bool is_valid_letter(string& s);
+void get_valid_virus_type(stringstream& s, string& type);
 
 #endif //VIRUSMUTATIONSIMULATION_UTILS_H

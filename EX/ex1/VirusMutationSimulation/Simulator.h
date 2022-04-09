@@ -11,9 +11,9 @@ using namespace std;
 
 class Simulator {
     int dimension;
-    string& target;
+    const int max_generations;
+    const string& target;
     vector<SarsCov2> virus_list;
-    int max_generations;
 
 public:
     Simulator(const vector<string>& gen_list, const int dimension, const string& target, const int max_gen);
