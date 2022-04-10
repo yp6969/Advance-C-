@@ -10,6 +10,8 @@
 #include <iterator>
 #include <algorithm>
 #include <sstream>
+#include <vector>
+
 
 
 #define MAX_DIM 1000

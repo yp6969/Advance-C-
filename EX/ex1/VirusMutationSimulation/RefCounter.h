@@ -10,6 +10,12 @@
 
 using namespace std;
 
+typedef struct {
+    int counter;
+    string data;
+
+}Ancestor;
+
 class RefCounter {
     vector<string> ancestor_list;
 
