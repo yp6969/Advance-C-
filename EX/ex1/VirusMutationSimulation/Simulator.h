@@ -4,23 +4,23 @@
 
 #ifndef VIRUSMUTATIONSIMULATION_SIMULATOR_H
 #define VIRUSMUTATIONSIMULATION_SIMULATOR_H
+#include <iostream>
 #include <vector>
 #include "SarsCov2.h"
 
 using namespace std;
 
 class Simulator {
-    int dimension;
+    const int dimension;
     const int max_generations;
     const string& target;
     vector<SarsCov2> virus_list;
 
 public:
-    Simulator(const vector<string>& gen_list, const int dimension, const string& target, const int max_gen);
+    Simulator(const vector<string>& virus_list, int dimension, const string& target, int max_generations);
     ~Simulator();
-    void init(const vector<string>& gen_list, const int dimension, const string& target, const int max_gen);
-
-
+    void init(const vector<string>& virus_list);
+    void build_virus(const char& type, const string& gen);
 
 };
 

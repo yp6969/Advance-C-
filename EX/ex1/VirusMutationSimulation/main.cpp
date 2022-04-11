@@ -1,4 +1,5 @@
 #include "utils.h"
+#include "Simulator.h"
 
 using namespace std;
 
@@ -16,20 +17,20 @@ int main(int argc, char *argv[]) {
 
     int dimension;
     string target;
-    int generations;
+    int max_generations;
     vector<string> virus_list;
     int num_of_viruses;
 
-    parse_config(config, dimension, target, generations);
+    parse_config(config, dimension, target, max_generations);
     parse_viruses(first_gen, dimension, num_of_viruses, virus_list);
 
+    Simulator sim(virus_list, dimension, target, max_generations);
 
-
-    cout << dimension << " " << target << " " << generations << " " << endl;
-    cout << num_of_viruses << endl;
-    for(string& s: virus_list){
-        cout << s << endl;
-    }
+//    cout << dimension << " " << target << " " << max_generations << " " << endl;
+//    cout << num_of_viruses << endl;
+//    for(string& s: virus_list){
+//        cout << s << endl;
+//    }
 
     return 0;
 }

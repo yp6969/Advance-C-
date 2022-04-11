@@ -9,11 +9,10 @@ using namespace std;
 
 class SarsCov2 {
 private:
-    string gen;
+    const string& gen;
 
 public:
-    SarsCov2();
-    SarsCov2(string g);
+    explicit SarsCov2(const string& gen);
     SarsCov2(SarsCov2& o);
     ~SarsCov2();
     SarsCov2& operator=(const SarsCov2& other);
