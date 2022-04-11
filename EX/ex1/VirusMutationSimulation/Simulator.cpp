@@ -23,24 +23,29 @@ void Simulator::init(const vector<string> &virus_str) {
         gen = s.substr(1);
         build_virus(type, gen);
         ss.str("");
+
 //        cout << "type = " << type << " " << "gen " << gen << endl;
     }
 
-    for(SarsCov2& v: virus_list){
-        cout << v << endl;
+//    Omicron q(gen);
+//    cout << q << endl;
+//    virus_list.push_back(new Omicron(gen));
+
+    for(SarsCov2* v: virus_list){
+        cout << *v << endl;
     }
 }
 
 void Simulator::build_virus(const char& type, const string& gen){
     switch (type) {
         case 'a':
-            virus_list.push_back(Alpha(gen));
+            virus_list.push_back(new Alpha(gen));
             break;
         case 'd':
-            virus_list.push_back(Delta(gen));
+            virus_list.push_back(new Delta(gen));
             break;
         case 'o':
-            virus_list.push_back(Omicron(gen));
+            virus_list.push_back(new Omicron(gen));
             break;
         default:
             return;
