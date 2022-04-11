@@ -1,3 +1,0 @@
-C:/Users/ypinhas/last_semester/cpp/EX/ex1/VirusMutationSimulation/cmake-build-debug/CMakeFiles/VirusMutationSimulation.dir
-C:/Users/ypinhas/last_semester/cpp/EX/ex1/VirusMutationSimulation/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/ypinhas/last_semester/cpp/EX/ex1/VirusMutationSimulation/cmake-build-debug/CMakeFiles/rebuild_cache.dir
