@@ -3,3 +3,9 @@
 //
 
 #include "Alpha.h"
+
+Alpha::Alpha(const string &gen) : SarsCov2(gen) {}
+
+Alpha::~Alpha() {
+
+}

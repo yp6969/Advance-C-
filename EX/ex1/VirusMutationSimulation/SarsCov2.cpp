@@ -13,6 +13,11 @@ SarsCov2::~SarsCov2() {
 
 }
 
+ostream& operator<<(ostream &os, const SarsCov2 &cov2) {
+    os << "gen: " << cov2.gen;
+    return os;
+}
+
 //SarsCov2 &SarsCov2::operator=(const SarsCov2 &other) {
 //    return ;
 //}

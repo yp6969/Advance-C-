@@ -3,3 +3,9 @@
 //
 
 #include "Omicron.h"
+
+Omicron::Omicron(const string &gen) : SarsCov2(gen) {}
+
+Omicron::~Omicron() {
+
+}

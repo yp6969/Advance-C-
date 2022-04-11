@@ -1,3 +1,4 @@
+
 //
 // Created by ypinhas on 4/5/2022.
 //
@@ -9,6 +10,10 @@
 #include "SarsCov2.h"
 
 class Omicron : public SarsCov2{
+public:
+    Omicron(const string &gen);
+
+    virtual ~Omicron();
 
 };
 
