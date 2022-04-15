@@ -8,48 +8,80 @@
 #include "Delta.h"
 #include "Omicron.h"
 
-Simulator::Simulator(const vector<string>& virus_list, const int dimension, const string& target, const int max_generations)
+Simulator::Simulator(const vector<string>& viruses, const int dimension, const string& target, const int max_generations)
 : dimension(dimension), target(target), max_generations(max_generations)
 {
-    init(virus_list);
+    init(viruses);
 }
 
-void Simulator::init(const vector<string> &virus_str) {
-    stringstream ss;
+void Simulator::init(const vector<string>& viruses) {
+    /**
+     * init the simulator
+     */
+    init_ancestors(viruses);
+    init_virus_list();
+
+    delete virus_list[0];
+//    virus_list[0]->getAncestor()->second--;
+//    SarsCov2* a =  virus_list[2];
+//    delete a;
+//    virus_list.erase(virus_list.begin() + 2);
+
+//    sort();
+
+//    for(auto v: virus_list){
+//        cout << *v << " taget: " << v->strength(target) <<endl;
+//    }
+
+    for(auto p: ancestors){
+        cout << p.first << " " << p.second << endl;
+    }
+}
+
+void Simulator::init_ancestors(const vector<string> &viruses) {
+    /**
+     * initialize the nacestors list
+     */
+    for(string virus: viruses) {
+        ancestors.push_back(make_pair(virus, 1));
+    }
+}
+
+void Simulator::init_virus_list() {
     char type;
-    string gen;
-    for(const string& s: virus_str){
-        type = s[0];
-        gen = s.substr(1);
-        build_virus(type, gen);
-        ss.str("");
-
-//        cout << "type = " << type << " " << "gen " << gen << endl;
-    }
-
-//    Omicron q(gen);
-//    cout << q << endl;
-//    virus_list.push_back(new Omicron(gen));
-
-    for(SarsCov2* v: virus_list){
-        cout << *v << endl;
+    for(auto& virus: ancestors){
+        type = virus.first[0];
+        build_virus(type, virus);
     }
 }
+void Simulator::build_virus(char type, pair<string, int>& virus){
 
-void Simulator::build_virus(const char& type, const string& gen){
     switch (type) {
         case 'a':
-            virus_list.push_back(new Alpha(gen));
+            virus_list.push_back(new Alpha(&virus));
             break;
         case 'd':
-            virus_list.push_back(new Delta(gen));
+            virus_list.push_back(new Delta(&virus));
             break;
         case 'o':
-            virus_list.push_back(new Omicron(gen));
+            virus_list.push_back(new Omicron(&virus));
             break;
         default:
             return;
     }
 }
+
+void Simulator::sort() {
+    /**
+     * sort the virus list by its strength
+     */
+//    std::sort(virus_list.begin(), virus_list.end());
+    std::sort(virus_list.begin(), virus_list.end(),
+              [this](const SarsCov2* a, const SarsCov2* b)
+              { return a->strength(this->target) < b->strength(this->target); } );
+
+}
+
+
 
 Simulator::~Simulator()=default;

@@ -6,7 +6,9 @@
 #define VIRUSMUTATIONSIMULATION_SIMULATOR_H
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "SarsCov2.h"
+
 
 using namespace std;
 
@@ -15,13 +17,18 @@ class Simulator {
     const int max_generations;
     const string& target;
     vector<SarsCov2*> virus_list;
+    vector<pair<string, int>> ancestors;
+
 
 public:
-    Simulator(const vector<string>& virus_list, int dimension, const string& target, int max_generations);
+    Simulator(const vector<string>& viruses, int dimension, const string& target, int max_generations);
     virtual ~Simulator();
     void init(const vector<string>& virus_list);
+    void init_ancestors(const vector<string>& virus_list);
+    void init_virus_list();
+    void build_virus(char type, pair<string, int>& virus);
+    void sort();
 
-    void build_virus(const char& type, const string& gen);
 
 };
 

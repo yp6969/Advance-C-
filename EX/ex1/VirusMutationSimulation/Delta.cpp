@@ -4,6 +4,6 @@
 
 #include "Delta.h"
 
-Delta::Delta(const string &gen) : SarsCov2(gen) {}
+Delta::Delta(pair<string,int>* ancestor) : SarsCov2(ancestor, 'd'){}
 
 Delta::~Delta() {}

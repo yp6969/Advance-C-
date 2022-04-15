@@ -4,7 +4,7 @@
 
 #include "Alpha.h"
 
-Alpha::Alpha(const string &gen) : SarsCov2(gen) {}
+Alpha::Alpha(pair<string,int>* ancestor) : SarsCov2(ancestor, 'a') {}
 
 Alpha::~Alpha() {
 

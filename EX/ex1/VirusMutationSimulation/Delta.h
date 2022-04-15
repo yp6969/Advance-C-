@@ -10,8 +10,9 @@
 #include "SarsCov2.h"
 
 class Delta : public SarsCov2{
+    const char type = 'd';
 public:
-    Delta(const string &gen);
+    Delta(pair<string,int>* ancestor);
 
     virtual ~Delta();
 };

@@ -9,8 +9,9 @@
 #include "SarsCov2.h"
 
 class Alpha : public SarsCov2{
+
 public:
-    Alpha(const string &gen);
+    Alpha(pair<string,int>* ancestor);
 
     virtual ~Alpha();
 

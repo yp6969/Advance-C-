@@ -10,8 +10,10 @@
 #include "SarsCov2.h"
 
 class Omicron : public SarsCov2{
+    const char type = 'o';
+
 public:
-    Omicron(const string &gen);
+    Omicron(pair<string,int>* ancestor);
 
     virtual ~Omicron();
 
