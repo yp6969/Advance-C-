@@ -19,7 +19,7 @@ private:
     pair<string, int>* ancestor;
 
 public:
-    explicit SarsCov2(pair<string,int>* ancestor, const char type);
+    explicit SarsCov2(pair<string,int>* ancestor, char type);
     SarsCov2(SarsCov2& o);
     ~SarsCov2();
 //    SarsCov2& operator=(const SarsCov2& other);

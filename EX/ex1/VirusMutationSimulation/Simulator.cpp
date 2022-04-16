@@ -21,17 +21,25 @@ void Simulator::init(const vector<string>& viruses) {
     init_ancestors(viruses);
     init_virus_list();
 
+    sort();
     delete virus_list[0];
+    virus_list.erase(virus_list.begin());
+
+
+    auto p = pair<string, int>("sdf", 3);
+    vector<SarsCov2*> v{};
+    v.push_back(new Delta(&p));
+    cout << *v[0] << endl;
+    delete v[0];
+//    delete virus_list[1];
 //    virus_list[0]->getAncestor()->second--;
 //    SarsCov2* a =  virus_list[2];
 //    delete a;
-//    virus_list.erase(virus_list.begin() + 2);
 
-//    sort();
 
-//    for(auto v: virus_list){
-//        cout << *v << " taget: " << v->strength(target) <<endl;
-//    }
+    for(auto v: virus_list){
+        cout << *v << " taget: " << v->strength(target) <<endl;
+    }
 
     for(auto p: ancestors){
         cout << p.first << " " << p.second << endl;
