@@ -7,6 +7,10 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <cstdlib>
+#include <ctime>
+#include <unistd.h>
+#include <random>
 #include "SarsCov2.h"
 
 
@@ -26,10 +30,20 @@ public:
     void init(const vector<string>& virus_list);
     void init_ancestors(const vector<string>& virus_list);
     void init_virus_list();
-    void build_virus(char type, pair<string, int>& virus);
+    void build_virus(pair<string, int>& virus);
     void sort();
 
+    void tick();
+    void group_update();
+    void delete_to_lowest();
+    void gen_exchange(SarsCov2 *virus1, SarsCov2 *virus2, int index1, int index2);
+    void private_viruses_update();
 
+    void print_viruses() const;
+    void print_ancestors() const;
+    friend ostream &operator<<(ostream &os, const pair<string, int> &ancestor);
+    void print_strongest();
+    void summery();
 };
 
 #endif //VIRUSMUTATIONSIMULATION_SIMULATOR_H

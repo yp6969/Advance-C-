@@ -9,11 +9,13 @@
 #include "SarsCov2.h"
 
 class Alpha : public SarsCov2{
+    double p = 0.37;
 
 public:
-    Alpha(pair<string,int>* ancestor);
-
+    explicit Alpha(pair<string,int>* ancestor);
     virtual ~Alpha();
+
+    void switch_letters(int i) override;
 
 };
 

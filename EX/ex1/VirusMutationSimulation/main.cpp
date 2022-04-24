@@ -1,4 +1,3 @@
-#include "utils.h"
 #include "Simulator.h"
 
 using namespace std;
@@ -26,11 +25,8 @@ int main(int argc, char *argv[]) {
 
     Simulator sim(virus_list, dimension, target, max_generations);
 
-//    cout << dimension << " " << target << " " << max_generations << " " << endl;
-//    cout << num_of_viruses << endl;
-//    for(string& s: virus_list){
-//        cout << s << endl;
-//    }
+    sim.tick();
+    sim.summery();
 
     return 0;
 }

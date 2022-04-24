@@ -4,7 +4,6 @@
 
 #include "utils.h"
 
-
 void parse_config(ifstream& input, int& dimension, string& target, int& max_generations){
     /**
      * parsing valid config file to dimension target str and num of iterations

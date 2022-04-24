@@ -10,12 +10,13 @@
 #include "SarsCov2.h"
 
 class Omicron : public SarsCov2{
-    const char type = 'o';
-
+    double p = 2.0 / gen.length();
 public:
-    Omicron(pair<string,int>* ancestor);
-
+    explicit Omicron(pair<string,int>* ancestor);
     virtual ~Omicron();
+
+    void switch_letters(int i) override;
+
 
 };
 

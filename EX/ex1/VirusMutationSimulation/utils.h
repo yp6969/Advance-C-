@@ -22,6 +22,7 @@
 
 using namespace std;
 
+//void Spaced(const string& userString);
 
 void parse_viruses(ifstream& input, int dim, int& num_of_viruses, vector<string>& virus_list);
 void parse_virus_list(ifstream& input, int dim, vector<string>& virus_list);

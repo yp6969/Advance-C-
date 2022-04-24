@@ -10,11 +10,13 @@
 #include "SarsCov2.h"
 
 class Delta : public SarsCov2{
-    const char type = 'd';
+    double p = 1.0 / gen.length();
 public:
-    Delta(pair<string,int>* ancestor);
-
+    explicit Delta(pair<string,int>* ancestor);
     virtual ~Delta();
+
+    void switch_letters(int i) override;
+
 };
 
 
