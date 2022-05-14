@@ -19,6 +19,10 @@ public:
             throw std::out_of_range("invalid access"); // Throw something more appropriate
         return data[size*y + x]; // Stride-aware access
     }
+
+    void add(T edge){
+
+    }
 };
 
 #endif //PNEVERLAND_MATRIX2D_H

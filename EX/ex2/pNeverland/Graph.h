@@ -6,12 +6,11 @@
 #define PNEVERLAND_GRAPH_H
 #include "Matrix2D.h"
 
-template <typename E, typename V>
+template <typename V, typename E>
 class Graph {
-private:
-    std::vector<E> vertice;
-    SquareMatrix2D<V> edge;
 public:
+    std::vector<V> vertices;
+    SquareMatrix2D<E> edge;
     Graph();
     ~Graph();
 
