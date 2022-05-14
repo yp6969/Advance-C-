@@ -10,11 +10,22 @@ template <typename V, typename E>
 class Graph {
 public:
     std::vector<V> vertices;
-    SquareMatrix2D<E> edge;
+    SquareMatrix2D<E> edges;
     Graph();
     ~Graph();
 
     void add_node();
+
+
+    V& get_vertice(unsigned int i) const{
+        return vertices[i];
+    }
+
+    E& get_edge(unsigned int x, unsigned int y) const {
+        return edges(x, y);
+    }
+
+
 };
 
 
