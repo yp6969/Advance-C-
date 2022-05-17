@@ -6,10 +6,41 @@ string INPUT_SIGN = "-i";
 string CONFIG_SIGN = "-c";
 string OUTPUT_SIGN = "-o";
 
+
+const string BUS ="bus";
+const string TRAM = "tram";
+const string SPIRNTER = "sprinter";
+const string RAIL = "rail";
+
+vector<vector<string>> data_container;
+
+
+
+
+
+void set_pNeverland(string file_name){
+    /// GET VEHICLE TYPE
+    int pos;
+    for(int i = 0 ; i < file_name.size() ; i++)
+    {
+        if( !isalpha(file_name[i])){
+            pos = i;
+            break;
+        }
+    }
+    string vehicle = file_name.substr(0 , pos);
+    for(auto d : data_container){
+        ///  CRATE OBJECT BY DATA AND TYPE
+
+    }
+}
+
+
 void initializing(int size, const char** files){
     ///  initializing first files
     vector<string> input;
     vector<string> input_files;
+
     string output_file ;
     string config_file ;
 
@@ -24,6 +55,8 @@ void initializing(int size, const char** files){
             for(int j = i ; j < input.size() ; j++){
                 if(input[j] == CONFIG_SIGN || input[j] == OUTPUT_SIGN) break;
                 input_files.push_back(input[j]);
+                check_input_file(input[j] , data_container);
+                set_pNeverland(input[j] );
                 i = j;
             }
         }
@@ -45,49 +78,54 @@ void get_input(){
     while(input!="EXIT"){
         vector<string> details;
         input= "";
-        cin >> input;
-        split_str(input  ,details, space_delimiter );
+        getline(cin , input);
+        stringstream s(input);
+        istream_iterator<std::string> begin(s);
+        istream_iterator<std::string> end;
+        vector<std::string> data(begin, end);
+        //split_str(input  ,details, space_delimiter );
 
         /// print to check
-        print_input(details);
+        print_input(data);
         ////////
 
-        if(details[0] == "load"){
+        if(data[0] == "load"){
             /// load details file from user
-            string file = details[1];
+            check_input_file(data[1] , data_container);
         }
-        else if(details[0] == "outbound"){
+
+        else if(data[0] == "outbound"){
             ///get all stations which can be reached in a few steps from the requested  start station
-            string source_station = details[1];
+            string source_station = data[1];
 //            if(!function){
-//                cout<< source_station << "does not exist in the current network. \n";
+             //throw exception("source_station does not exist in the current network. \n");
 //            }
 
         }
-        else if(details[0] == "inbound"){
+        else if(data[0] == "inbound"){
             ///get all stations which can be reached in a few steps from the requested  destination station
-            string target_station = details[1];
+            string target_station = data[1];
 //            if(!function){
 //                cerr<< source_station << "does not exist in the current network. \n";
 //            }
         }
-        else if(details[0] == "uniExpress"){
+        else if(data[0] == "uniExpress"){
             /// get the shortest route between two stations -- without vehicle replacement
-            string source_station = details[1];
-            string target_station = details[2];
+            string source_station = data[1];
+            string target_station = data[2];
 //            if(!function){
 //              cerr<< source_station << "does not exist in the current network. \n";
 //            }
         }
-        else if(details[0] == "multiExpress"){
+        else if(data[0] == "multiExpress"){
             /// get the shortest route between two stations -- with vehicle replacement
-            string source_station = details[1];
-            string target_station = details[2];
+            string source_station = data[1];
+            string target_station = data[2];
 //            if(!function){
 //                cerr<< source_station << "does not exist in the current network. \n";
 //            }
         }
-        else if(details[0] == "print"){
+        else if(data[0] == "print"){
             /// print transport network
 
         }
@@ -113,3 +151,4 @@ void print_input(vector <string> &out) {
         cout << a <<"\n";
     }
 }
+

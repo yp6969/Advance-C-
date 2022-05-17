@@ -6,6 +6,8 @@
 #define PNEVERLAND_EXCEPTIONS_H
 #include <exception>
 #include <string>
+
+
 class NeverlandException: public std::exception{
 
 private:

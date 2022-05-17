@@ -1,0 +1,8 @@
+CanibalCove	PiccaninnyPlains	4
+PiccaninnyPlains	Neverseas	3
+Neverseas	CSPiccaninnyMain	4
+CSPiccaninnyMain	NeverlandPlains	3
+NeverlandPlains	PixieHollow	5
+PixieHollow	MazeOfRegrets	4
+MazeOfRegrets	NeverpeakMountain	7
+NeverpeakMountain	CanibalCove	8
