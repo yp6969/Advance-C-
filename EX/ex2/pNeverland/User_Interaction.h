@@ -8,8 +8,8 @@
 #include <iostream>
 #include "vector"
 #include "string"
-//#include "exceptions.h"
-
+#include "exceptions.h"
+#include "Neverland.h"
 void initializing(int size, const char** files);
 void get_input();
 void split_str( string const &str,vector <string> &out ,  const char delim=' ' );

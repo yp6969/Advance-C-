@@ -1,22 +1,19 @@
 
 
 #include "User_Interaction.h"
+
 const char space_delimiter = ' ';
 string INPUT_SIGN = "-i";
 string CONFIG_SIGN = "-c";
 string OUTPUT_SIGN = "-o";
-
-
 const string BUS ="bus";
 const string TRAM = "tram";
 const string SPIRNTER = "sprinter";
 const string RAIL = "rail";
+Neverland N;
+
 
 vector<vector<string>> data_container;
-
-
-
-
 
 void set_pNeverland(string file_name){
     /// GET VEHICLE TYPE
@@ -30,6 +27,7 @@ void set_pNeverland(string file_name){
     }
     string vehicle = file_name.substr(0 , pos);
     for(auto d : data_container){
+        N.add_route(d[0] , d[1], stoi(d[2]) , vehicle);
         ///  CRATE OBJECT BY DATA AND TYPE
 
     }
