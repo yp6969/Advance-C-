@@ -29,8 +29,8 @@ void set_pNeverland(string file_name){
     for(auto d : data_container){
         N.add_route(d[0] , d[1], stoi(d[2]) , vehicle);
         ///  CRATE OBJECT BY DATA AND TYPE
-
     }
+    data_container.clear();
 }
 
 
@@ -53,9 +53,10 @@ void initializing(int size, const char** files){
             for(int j = i ; j < input.size() ; j++){
                 if(input[j] == CONFIG_SIGN || input[j] == OUTPUT_SIGN) break;
                 input_files.push_back(input[j]);
-                check_input_file(input[j] , data_container);
+                check_input_file(input[j]);
                 set_pNeverland(input[j] );
                 i = j;
+
             }
         }
             /// CONFIG FILES
@@ -69,11 +70,13 @@ void initializing(int size, const char** files){
         }
     }
     print_data_container();
+    cout << N;
 }
 
 void get_input(){
     /// Interaction with user -- simulation control
     string input;
+    cout << N;
     while(true){
         vector<string> details;
         input= "";
@@ -83,15 +86,15 @@ void get_input(){
         istream_iterator<std::string> end;
         vector<std::string> data(begin, end);
         //split_str(input  ,details, space_delimiter );
-
         /// print to check
         print_input(data);
         ////////
         try {
             if (data[0] == "load") {
                 /// load details file from user
-                check_input_file(data[1], data_container);
-                print_data_container();
+                check_input_file(data[1]);
+                set_pNeverland(data[1]);
+                cout << N;
             } else if (data[0] == "outbound") {
                 ///get all stations which can be reached in a few steps from the requested  start station
                 string source_station = data[1];
@@ -125,7 +128,7 @@ void get_input(){
                 /// print transport network
 
             }
-            else if(data[0] == "EXIT"){
+            else if(data[0] == "EXIT" || data[0] == "exit"){
                 break;
             }
             else{

@@ -13,7 +13,7 @@ using namespace std;
 
 
 int check_file_name(string file_name);
-void  check_input_file(string file_name , vector<vector<string>>& data);
+void  check_input_file(string file_name);
 
 
 

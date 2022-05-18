@@ -6,7 +6,7 @@ const string BUS ="bus";
 const string TRAM = "tram";
 const string SPIRNTER = "sprinter";
 const string RAIL = "rail";
-
+extern vector<vector<string>> data_container;
 
 int check_file_name(string file_name){
     int pos;
@@ -27,7 +27,7 @@ int check_file_name(string file_name){
 
 
 
-void  check_input_file(string file_name , vector<vector<string>>& data_container)
+void  check_input_file(string file_name)
 {
     /*
      * CHECK IF FILE NAME IS VALID
@@ -39,7 +39,7 @@ void  check_input_file(string file_name , vector<vector<string>>& data_container
 
     ifstream my_file(file_name);             /// OPEN FILE
     if(!my_file){
-        throw NeverlandException(" ERROR: file cannot open\n");
+        throw NeverlandException(" ERROR: file " + file_name +" cannot open\n");
         ///TODO -- CHECK IF THIS THE FIRST FILE
     }
 

@@ -26,34 +26,11 @@ enum StationType{
 class Neverland {
 
 private:
-    map<string, unique_ptr<Graph<string , int>>> transport;
+    map<string, shared_ptr<Graph<string , int>>> transport;
 public:
-
-    Neverland(){
-        transport.insert({"bus", nullptr});
-        transport.insert({"rail", nullptr});
-        transport.insert({"tram", nullptr});
-        transport.insert({"sprinter", nullptr});
-    }
-
-
-
-    void add_route(std::string from, std::string to, unsigned int time){
-        /*TODO -
-         * searching the names of the stations:
-         * if not exist, create new station and add it to the vertices
-         * which station that is exist hold its reference
-         * searching the edge in the matrix:
-         * if not exist create new edge and add it to the matrix
-         */
-
-
-
-        // TODO - add station if not exist
-        // TODO - add edge according to the information (from, to, time)
-        // TODO - create the edge here and send the reference
-    }
+    Neverland();
+    void add_route(std::string from, std::string to, unsigned int time, string type);
+    friend ostream& operator<<(ostream& os, const Neverland& N);
 };
-
 
 #endif //PNEVERLAND_NEVERLAND_H
