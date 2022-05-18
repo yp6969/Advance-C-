@@ -19,7 +19,7 @@ int check_file_name(string file_name){
     }
     string vehicle = file_name.substr(0 , pos);
     if(vehicle != BUS && vehicle != TRAM && vehicle != SPIRNTER && vehicle != RAIL  ){
-        throw NeverlandException("ERROR: file name is not valid");
+        throw NeverlandException("ERROR: " + file_name + " file name is not valid");
     }
     return 1;
 }
@@ -62,11 +62,11 @@ void  check_input_file(string file_name)
         }
         /// STATION LENGTH MAX = 32
         if((data[0].size() > 32 || data[0].size() == 0 ) || (data[1].size() > 32 || data[1].size() == 0 ) ){
-            throw NeverlandException("ERROR: time is not valid");
+            throw NeverlandException("ERROR: station length  *" + data[0] +"   " +data[1] +" is not valid");
         }
         time = stoi(data[2]);
         if(time < 0){
-            throw NeverlandException("ERROR: time is not valid");
+            throw NeverlandException("ERROR: time " + data[2] + " is not valid");
         }
         data_container.push_back(data);
         /// DATA = [ STRING SOURCE STATION , STRING DESTINATION STATION , INT  TIME ]

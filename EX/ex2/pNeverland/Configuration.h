@@ -1,6 +1,4 @@
-//
-// Created by ypinhas on 5/18/2022.
-//
+
 
 #ifndef PNEVERLAND_CONFIGURATION_H
 #define PNEVERLAND_CONFIGURATION_H

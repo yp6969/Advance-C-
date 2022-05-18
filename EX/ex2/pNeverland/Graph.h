@@ -26,9 +26,8 @@ public:
     friend ostream& operator<<(ostream& os, const Graph<V, E>& graph)
     {
         for(auto const g: graph.graph){
-            os << g.first  << endl;
             for(auto v: g.second){
-                os << v.first <<" " << v.second<< endl;
+                os << g.first << " --> " << v.first <<" " << v.second<< endl;
             }
             os << "\n";
         }
@@ -44,7 +43,6 @@ template <typename V, typename E>
 void Graph<V,E>::add_node(V from, V to, E time){
     pair<V, E> p = make_pair(to, time);
     auto a = graph.find(from);
-    std::cout << (a == graph.end()) << std::endl;
     if(a == graph.end()){
         graph.insert({from, vector<pair<V, E>>{p}});
     }
