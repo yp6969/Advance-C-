@@ -19,8 +19,7 @@ int check_file_name(string file_name){
     }
     string vehicle = file_name.substr(0 , pos);
     if(vehicle != BUS && vehicle != TRAM && vehicle != SPIRNTER && vehicle != RAIL  ){
-        cerr << "ERROR: file name to current";
-        return 0;
+        throw NeverlandException("ERROR: file name is not valid");
     }
     return 1;
 }
@@ -36,14 +35,11 @@ void  check_input_file(string file_name , vector<vector<string>>& data_container
      * TAKE EACH LINE AND SPLIT TO --> SOURCE STATION , DESTINATION STATION , TIME ,
      * */
 
-    if(!check_file_name(file_name)) ///IF FILE NAME NOT VALID
-    {
-        return ;
-    }
+    check_file_name(file_name); ///IF FILE NAME NOT VALID
 
     ifstream my_file(file_name);             /// OPEN FILE
     if(!my_file){
-        cerr <<" ERROR: file cannot open\n";
+        throw NeverlandException(" ERROR: file cannot open\n");
         ///TODO -- CHECK IF THIS THE FIRST FILE
     }
 
@@ -57,18 +53,16 @@ void  check_input_file(string file_name , vector<vector<string>>& data_container
         vector<std::string> data(begin, end);
 
         if(data.size() != 3 ){
-            cerr << "ERROR: NEED ONLY 3 ARGUMENT IN THE FILE.\n";
+            throw NeverlandException("ERROR: NEED ONLY 3 ARGUMENT IN THE FILE.\n");
         }
         for(char c : data[2]){           /*CHECK IF THE TIME IS A NUMBER */
             if(!isdigit(c)){
-                cerr << "ERROR: time is not valid";
-                return;
+                throw NeverlandException("ERROR: time is not valid");
             }
         }
         /// STATION LENGTH MAX = 32
         if((data[0].size() > 32 || data[0].size() == 0 ) || (data[1].size() > 32 || data[1].size() == 0 ) ){
-            cerr << "ERROR: time is not valid";
-            return;
+            throw NeverlandException("ERROR: time is not valid");
         }
         time = stoi(data[2]);
         if(time < 0){

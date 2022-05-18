@@ -14,7 +14,7 @@ int main(int argc , const char** argv) {
         get_input();
     }
     catch (NeverlandException e){
-        cout << e.what();
+        cerr << e.what();
     }
 
     return 0;

@@ -45,7 +45,7 @@ void initializing(int size, const char** files){
     string config_file ;
 
     for(int i =1 ; i < size; i++){
-        input.push_back(files[i]);
+        input.emplace_back(files[i]);
     }
 
     for(int i = 0 ; i < input.size()  ;  i++){
@@ -62,6 +62,7 @@ void initializing(int size, const char** files){
         }
             /// CONFIG FILES
         else if(input[i] == CONFIG_SIGN){
+//            TODO - init configurations
             config_file = input[++i];
         }
             /// OUTPUT FILES
@@ -69,13 +70,13 @@ void initializing(int size, const char** files){
             output_file = input[++i];
         }
     }
+    print_data_container();
 }
 
 void get_input(){
     /// Interaction with user -- simulation control
     string input;
-
-    while(input!="EXIT"){
+    while(true){
         vector<string> details;
         input= "";
         getline(cin , input);
@@ -88,50 +89,55 @@ void get_input(){
         /// print to check
         print_input(data);
         ////////
+        try {
+            if (data[0] == "load") {
+                /// load details file from user
+                check_input_file(data[1], data_container);
+                print_data_container();
+            } else if (data[0] == "outbound") {
+                ///get all stations which can be reached in a few steps from the requested  start station
+                string source_station = data[1];
+                //            if(!function){
+                //throw exception("source_station does not exist in the current network. \n");
+                //            }
 
-        if(data[0] == "load"){
-            /// load details file from user
-            check_input_file(data[1] , data_container);
+            } else if (data[0] == "inbound") {
+                ///get all stations which can be reached in a few steps from the requested  destination station
+                string target_station = data[1];
+                //            if(!function){
+                //                cerr<< source_station << "does not exist in the current network. \n";
+                //            }
+            } else if (data[0] == "uniExpress") {
+                /// get the shortest route between two stations -- without vehicle replacement
+                string source_station = data[1];
+                string target_station = data[2];
+                //            if(!function){
+                //              cerr<< source_station << "does not exist in the current network. \n";
+                //            }
+            } else if (data[0] == "multiExpress") {
+                /// get the shortest route between two stations -- with vehicle replacement
+                string source_station = data[1];
+                string target_station = data[2];
+                //            if(!function){
+                //                cerr<< source_station << "does not exist in the current network. \n";
+                //            }
+            } else if (data[0] == "print") {
+
+                cout << "here" << endl;
+                /// print transport network
+
+            }
+            else if(data[0] == "EXIT"){
+                break;
+            }
+            else{
+                cout << "commend not found\n";
+            }
+        }
+        catch(NeverlandException e){
+            cerr << e.what() << endl;
         }
 
-        else if(data[0] == "outbound"){
-            ///get all stations which can be reached in a few steps from the requested  start station
-            string source_station = data[1];
-//            if(!function){
-             //throw exception("source_station does not exist in the current network. \n");
-//            }
-
-        }
-        else if(data[0] == "inbound"){
-            ///get all stations which can be reached in a few steps from the requested  destination station
-            string target_station = data[1];
-//            if(!function){
-//                cerr<< source_station << "does not exist in the current network. \n";
-//            }
-        }
-        else if(data[0] == "uniExpress"){
-            /// get the shortest route between two stations -- without vehicle replacement
-            string source_station = data[1];
-            string target_station = data[2];
-//            if(!function){
-//              cerr<< source_station << "does not exist in the current network. \n";
-//            }
-        }
-        else if(data[0] == "multiExpress"){
-            /// get the shortest route between two stations -- with vehicle replacement
-            string source_station = data[1];
-            string target_station = data[2];
-//            if(!function){
-//                cerr<< source_station << "does not exist in the current network. \n";
-//            }
-        }
-        else if(data[0] == "print"){
-            /// print transport network
-
-        }
-        else{
-            cout << "commend not found\n";
-        }
     }
 }
 
@@ -149,6 +155,15 @@ void split_str( string const &str,vector <string> &out ,  const char delim)
 void print_input(vector <string> &out) {
     for(auto a :out){
         cout << a <<"\n";
+    }
+}
+
+void print_data_container(){
+    for(const auto& e: data_container){
+        for(const auto& v: e){
+            cout << v << endl;
+
+        }
     }
 }
 
