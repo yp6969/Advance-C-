@@ -12,10 +12,10 @@ struct Configuration {
                           { "rail", 5 }, { "intercity", 15 },
                           { "central", 10 },{ "stad", 5 }};
 
-    const int& operator[] (string key) const {
+    const int& operator[] (const string& key) const {
         return c.at(key);
     }
-    int& operator[] ( string key ){
+    int& operator[] ( const string& key ){
         return c[key] ;
     }
 };

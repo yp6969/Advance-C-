@@ -10,12 +10,8 @@
 #include "string"
 #include "exceptions.h"
 #include "Neverland.h"
-
-
 void initializing(int size, const char** files);
 void get_input();
 void set_pNeverland(string file_name);
-
-
 
 #endif

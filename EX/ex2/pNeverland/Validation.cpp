@@ -8,7 +8,7 @@ const string SPIRNTER = "sprinter";
 const string RAIL = "rail";
 extern vector<vector<string>> data_container;
 
-int check_file_name(string file_name){
+int check_file_name(const string& file_name){
     int pos;
     for(int i = 0 ; i < file_name.size() ; i++)
     {
@@ -24,10 +24,7 @@ int check_file_name(string file_name){
     return 1;
 }
 
-
-
-
-void  check_input_file(string file_name)
+void  check_input_file(const string& file_name)
 {
     /*
      * CHECK IF FILE NAME IS VALID

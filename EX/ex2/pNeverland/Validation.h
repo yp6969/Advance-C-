@@ -12,8 +12,8 @@
 using namespace std;
 
 
-int check_file_name(string file_name);
-void  check_input_file(string file_name);
+int check_file_name(const string& file_name);
+void  check_input_file(const string& file_name);
 
 
 

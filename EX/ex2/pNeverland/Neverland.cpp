@@ -12,7 +12,7 @@ Neverland:: Neverland(){
     transport.insert({"sprinter", nullptr});
 }
 
-void Neverland:: add_route(std::string from, std::string to, unsigned int time, string type){
+void Neverland:: add_route(const string& from, const string& to, unsigned int time, const string& type){
     if(transport[type] == nullptr){
         transport[type] = std::make_shared<Graph<string, int>>();
     }
@@ -20,7 +20,7 @@ void Neverland:: add_route(std::string from, std::string to, unsigned int time, 
 }
 
 ostream& operator<<(ostream& os, const Neverland& N){
-    for(auto m : N.transport){
+    for(const auto& m : N.transport){
         os << endl;
         cout << m.first << "\n" << *(m.second.get())<< "\n";
     }
@@ -45,14 +45,14 @@ void Neverland::update_config(string& file_name) {
 }
 
 void Neverland::print_configuration(){
-    for(auto k : config.c){
+    for(const auto& k : config.c){
         cout <<endl <<  k.first << " " << k.second << endl;
     }
 
 }
 
-void Neverland:: BFS(string type , string station  , map< string,bool>& reachables){
-  for(auto s : transport[type]->graph[station]){
+void Neverland:: BFS(const string& type ,const string& station  , map< string,bool>& reachables ){
+  for(const auto& s :o_transport.empty()? transport[type]->graph[station]:o_transport[type].graph[station]){
       if(!reachables[s.first]){
           reachables[s.first] = true;
           BFS(type , s.first , reachables);
@@ -60,23 +60,31 @@ void Neverland:: BFS(string type , string station  , map< string,bool>& reachabl
   }
 }
 
-
-void Neverland:: get_all_reachable_Stations(string source){
-    map< string,bool> is_visited;
-    for(auto t : transport){
-        BFS(t.first , source , is_visited);
+void Neverland::inbound_outbound(const string& station ,const string& func){
+    if(func == "inbound"){ // MAKING OPPOSITE MAP OF TRANSPORTS
+        for(auto &v: transport){ // loop on vehicles
+            for(auto &s : v.second->graph){ // loop on each station
+                for(auto &s1 : s.second){ // loop on each station that connect to s
+                    o_transport[v.first].add_node(s1.first , s.first , 0  );
+                }
+            }
+        }
+    }
+    map< string,bool> is_visited1;
+    for(const auto &t : transport){ // loop on vehicles
+        BFS(t.first , station , is_visited1  );
         cout << t.first  << ": " ;
-        if(!is_visited.empty()){
-        for(auto s : is_visited){
-            if(s.first != source){
-                cout  << s.first << "   " ;}
-        }}
+        if(!is_visited1.empty()){
+            for(const auto& s : is_visited1){
+                if(s.first != station){
+                    cout  << s.first << "   " ;}
+            }}
         else{
             cout << "no outbound travel";
         }
         cout << endl;
-        is_visited.clear();
+        is_visited1.clear();
     }
+    if(func == "inbound"){
+        o_transport.clear();}
 }
-
-

@@ -1,6 +1,5 @@
 #include <iostream>
 #include "User_Interaction.h"
-#include "Configuration.h"
 
 
 
@@ -13,24 +12,10 @@ int main(int argc , const char** argv) {
         initializing(argc , argv);
         get_input();
     }
-    catch (NeverlandException e){
+    catch (NeverlandException& e){
         cerr << e.what();
     }
 
     return 0;
 }
 
-
-/*TODO - adding rout to the Graph:
- * get the route file,
- * extract the names of the stations and the time
- * send them to the add rout func of the Neverland
- */
-
-
-/**
- * load <car_name_<number>>.dat
- * <source_node> <TAB> <target_node> <TAB> <duration>
- *
- *
-*/

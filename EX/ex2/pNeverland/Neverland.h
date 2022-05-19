@@ -25,15 +25,16 @@ class Neverland {
 
 private:
     map<string, shared_ptr<Graph<string , int>>> transport;
+    map<string, Graph<string , int>> o_transport;
     Configuration config;
 public:
     Neverland();
-    void add_route(std::string from, std::string to, unsigned int time, string type);
+    void add_route(const string& from, const string& to, unsigned int time, const string& type);
     void update_config(string& file_name);
     friend ostream& operator<<(ostream& os, const Neverland& N);
     void print_configuration();
-    void get_all_reachable_Stations(string source);
-    void BFS(string type , string station  , map< string,bool>& reachables);
-};
+    void BFS(const string& type ,const string& station  , map< string,bool>& reachables );
+    void inbound_outbound(const string& station ,const string& func);
+    };
 
 #endif //PNEVERLAND_NEVERLAND_H

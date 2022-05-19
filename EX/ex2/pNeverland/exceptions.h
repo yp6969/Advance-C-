@@ -6,7 +6,7 @@
 #define PNEVERLAND_EXCEPTIONS_H
 #include <exception>
 #include <string>
-
+using namespace std;
 
 class NeverlandException: public std::exception{
 
@@ -14,7 +14,7 @@ private:
     std::string e;
 
 public:
-    NeverlandException(std::string e): e(e){}
+    explicit NeverlandException(const string& e): e(e){}
 
     std::string what(){
         return e;

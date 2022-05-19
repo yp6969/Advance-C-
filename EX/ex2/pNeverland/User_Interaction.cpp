@@ -2,7 +2,6 @@
 
 #include "User_Interaction.h"
 
-const char space_delimiter = ' ';
 const string INPUT_SIGN = "-i";
 const string OUTPUT_SIGN = "-o";
 const string CONFIG_SIGN = "-c";
@@ -32,7 +31,7 @@ void set_pNeverland(string file_name){
     data_container.clear();
 }
 
-void init_input_file(string file){
+void init_input_file(const string& file){
     check_input_file(file);
     set_pNeverland(file);
 }
@@ -65,7 +64,7 @@ void initializing(int size, const char** files){
             }
         }
     }
-    catch(NeverlandException e) { ///////ERROR ON INIT THE PROGRAM , EXIT -- TODO CHECK IF NEED TO DELETE N
+    catch(NeverlandException& e) { ///////ERROR ON INIT THE PROGRAM , EXIT -- TODO CHECK IF NEED TO DELETE N
         cout << e.what();
         exit(0);
     }
@@ -85,23 +84,22 @@ void get_input(){
         try {
             if (data[0] == "load") {
                 /// load details file from user
-                init_input_file(data[0]);
+                init_input_file(data[1]);
 
             } else if (data[0] == "outbound") {
                 ///get all stations which can be reached in a few steps from the requested  start station
-                N.get_all_reachable_Stations(data[1]);
-                ///TODO - OUTBOUND
+                N.inbound_outbound(data[1] , data[0]);
 
             } else if (data[0] == "inbound") {
                 ///get all stations which can be reached in a few steps from the requested  destination station
-                ///TODO - inbound
+                N.inbound_outbound(data[1] , data[0]);
 
             } else if (data[0] == "uniExpress") {
                 /// get the shortest route between two stations -- without vehicle replacement
                     if(data.size() != 3){
                         throw NeverlandException("ERROR : need to stations \n");
                     }
-                                        ///TODO - uniExpress
+                    ///TODO - uniExpress
 
             } else if (data[0] == "multiExpress") {
                 /// get the shortest route between two stations -- with vehicle replacement
@@ -120,7 +118,7 @@ void get_input(){
                 cout << "commend not found\n";
             }
         }
-        catch(NeverlandException e){
+        catch(NeverlandException& e){
             cerr << e.what() << endl;
         }
 
