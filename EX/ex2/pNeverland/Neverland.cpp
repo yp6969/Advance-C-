@@ -57,10 +57,7 @@ void Neverland:: BFS(string type , string station  , map< string,bool>& reachabl
           reachables[s.first] = true;
           BFS(type , s.first , reachables);
       }
-
   }
-
-
 }
 
 
@@ -69,9 +66,13 @@ void Neverland:: get_all_reachable_Stations(string source){
     for(auto t : transport){
         BFS(t.first , source , is_visited);
         cout << t.first  << ": " ;
+        if(!is_visited.empty()){
         for(auto s : is_visited){
             if(s.first != source){
                 cout  << s.first << "   " ;}
+        }}
+        else{
+            cout << "no outbound travel";
         }
         cout << endl;
         is_visited.clear();
