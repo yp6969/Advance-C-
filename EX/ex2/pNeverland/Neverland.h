@@ -32,6 +32,8 @@ public:
     void update_config(string& file_name);
     friend ostream& operator<<(ostream& os, const Neverland& N);
     void print_configuration();
+    void get_all_reachable_Stations(string source);
+    void BFS(string type , string station  , map< string,bool>& reachables);
 };
 
 #endif //PNEVERLAND_NEVERLAND_H

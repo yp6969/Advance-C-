@@ -50,3 +50,32 @@ void Neverland::print_configuration(){
     }
 
 }
+
+void Neverland:: BFS(string type , string station  , map< string,bool>& reachables){
+  for(auto s : transport[type]->graph[station]){
+      if(!reachables[s.first]){
+          reachables[s.first] = true;
+          BFS(type , s.first , reachables);
+      }
+
+  }
+
+
+}
+
+
+void Neverland:: get_all_reachable_Stations(string source){
+    map< string,bool> is_visited;
+    for(auto t : transport){
+        BFS(t.first , source , is_visited);
+        cout << t.first  << ": " ;
+        for(auto s : is_visited){
+            if(s.first != source){
+                cout  << s.first << "   " ;}
+        }
+        cout << endl;
+        is_visited.clear();
+    }
+}
+
+

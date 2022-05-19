@@ -89,6 +89,7 @@ void get_input(){
 
             } else if (data[0] == "outbound") {
                 ///get all stations which can be reached in a few steps from the requested  start station
+                N.get_all_reachable_Stations(data[1]);
                 ///TODO - OUTBOUND
 
             } else if (data[0] == "inbound") {
@@ -100,7 +101,7 @@ void get_input(){
                     if(data.size() != 3){
                         throw NeverlandException("ERROR : need to stations \n");
                     }
-                    ///TODO - uniExpress
+                                        ///TODO - uniExpress
 
             } else if (data[0] == "multiExpress") {
                 /// get the shortest route between two stations -- with vehicle replacement
