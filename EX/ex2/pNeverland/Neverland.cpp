@@ -3,9 +3,10 @@
 //
 
 #include <fstream>
+#include <utility>
 #include "Neverland.h"
 
-Neverland:: Neverland(){
+Neverland:: Neverland(): outputfile_name("output.dat"){
     transport.insert({"bus", nullptr});
     transport.insert({"rail", nullptr});
     transport.insert({"tram", nullptr});
@@ -39,6 +40,7 @@ void Neverland::update_config(string& file_name) {
     while(my_file >> type){
         my_file >> time;
         config[type] = stoi(time);
+        cout << type << " " << config[type] << endl;
     }
     my_file.close();
 
@@ -46,9 +48,8 @@ void Neverland::update_config(string& file_name) {
 
 void Neverland::print_configuration(){
     for(const auto& k : config.c){
-        cout <<endl <<  k.first << " " << k.second << endl;
+        cout <<  k.first << " " << k.second << endl;
     }
-
 }
 
 void Neverland:: BFS(const string& type ,const string& station  , map< string,bool>& reachables ){
@@ -87,4 +88,21 @@ void Neverland::inbound_outbound(const string& station ,const string& func){
     }
     if(func == "inbound"){
         o_transport.clear();}
+}
+
+void Neverland::set_outputfile(string filename) {
+    this->outputfile_name = move(filename);
+}
+
+
+void is_from_exist(const string& node){
+//    for()
+}
+
+
+/**
+ * calculate for each vehicle the shortest path
+ */
+void uniExpress(const string& from, const string& to){
+
 }

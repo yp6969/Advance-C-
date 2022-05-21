@@ -27,6 +27,7 @@ private:
     map<string, shared_ptr<Graph<string , int>>> transport;
     map<string, Graph<string , int>> o_transport;
     Configuration config;
+    string outputfile_name;
 public:
     Neverland();
     void add_route(const string& from, const string& to, unsigned int time, const string& type);
@@ -35,6 +36,7 @@ public:
     void print_configuration();
     void BFS(const string& type ,const string& station  , map< string,bool>& reachables );
     void inbound_outbound(const string& station ,const string& func);
-    };
+    void set_outputfile(string filename);
+};
 
 #endif //PNEVERLAND_NEVERLAND_H

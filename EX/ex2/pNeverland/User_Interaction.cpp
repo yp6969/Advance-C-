@@ -60,9 +60,10 @@ void initializing(int size, const char** files){
 
                 /// OUTPUT FILES
             else if (input[i] == OUTPUT_SIGN) {
-                ///TODO - print to file
+                N.set_outputfile(input[++i]);
             }
         }
+        N.print_configuration();
     }
     catch(NeverlandException& e) { ///////ERROR ON INIT THE PROGRAM , EXIT -- TODO CHECK IF NEED TO DELETE N
         cout << e.what();

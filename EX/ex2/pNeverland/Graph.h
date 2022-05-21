@@ -14,12 +14,13 @@ using namespace std;
 template <typename V, typename E>
 class Graph {
 public:
-    std::map<V, vector<pair<V, E>>> graph;
+    std::map<V, vector<pair<V, E>>> graph; // from: to, time
     Graph(): graph(){};
     ~Graph()= default;
 
     void add_node(V from, V to, E time);
     void update_node(V from, pair<V, E> p);
+    bool is_node_exist(V node);
     vector<pair<V, E>>& get_node(V station_name) const;
 
     friend ostream& operator<<(ostream& os, const Graph<V, E>& graph)
@@ -58,6 +59,23 @@ void Graph<V,E>::update_node(V from, pair<V, E> p){
     graph[from].emplace_back(p); // if dest not found
 }
 
+/**
+     * checking if the node is exist in the graph
+     * @param node
+     * @return bool
+     */
+template <typename V, typename E>
+bool Graph<V, E>::is_node_exist(V node){
+    return graph.find(node) != graph.end();
+}
+
+/**
+ * get the row of the wanted node
+ * @tparam V
+ * @tparam E
+ * @param station_name
+ * @return
+ */
 template <typename V, typename E>
 vector<pair<V, E>>&  Graph<V,E>::get_node(V station_name) const{
     if(!graph.contains(station_name)){
