@@ -6,6 +6,9 @@
 #include <utility>
 #include "Neverland.h"
 
+const int MAX = 1000000;
+
+
 Neverland:: Neverland(): outputfile_name("output.dat"){
     transport.insert({"bus", nullptr});
     transport.insert({"rail", nullptr});
@@ -104,5 +107,57 @@ void is_from_exist(const string& node){
  * calculate for each vehicle the shortest path
  */
 void uniExpress(const string& from, const string& to){
+
+}
+
+
+
+
+
+
+
+
+
+
+
+void Neverland::BFS1(const string& type  , const string& station , const string& prev_station  , map<string , bool>& reachable,map < string ,int > & route){
+    for(const auto& s : transport[type]->graph[station]){
+        if(route[prev_station] + s.second < route[s.first] ){
+            route[s.first] = route[prev_station] + s.second;
+        }
+        if(!reachable[s.first]){
+            reachable[s.first] = true;
+            BFS1(type , s.first , s.first , reachable , route);
+        }
+    }
+}
+
+
+void Neverland:: set_max_time_route(const string& type ,const string& station, map <string , int >& route){
+
+    for (const auto& t: transport[type]->graph[station]){
+        if(route.find(t.first) == route.end()){
+            route[t.first] = MAX;
+            set_max_time_route(type , t.first , route);
+        }
+    }
+}
+
+void Neverland::uniExpress_multiExpress(const string& func , const string& source , const string& destination){
+    map<string , bool> reachable; // < station , is visited>
+    map < string ,int > route;  // < station , route time from source  >
+    for(const auto& t : transport){  // loop on vehicles
+        route[source] = 0 ;
+        set_max_time_route(t.first , source , route); // set distance to MAX int to all te reachable stations from source
+        BFS1(t.first , source  , source , reachable , route);
+        cout << t.first << ": " << endl;
+        if(route.find(destination) != route.end()) {
+            cout << source << "--> " << destination << " = " << route[destination]<< endl;
+        } else{
+            cout << "route not found" << endl;
+        }
+        reachable.clear();
+        route.clear();
+    }
 
 }
