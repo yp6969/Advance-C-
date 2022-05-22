@@ -1,9 +1,6 @@
-//
-// Created by ypinhas on 5/16/2022.
-//
 
-#ifndef PNEVERLAND_EXCEPTIONS_H
-#define PNEVERLAND_EXCEPTIONS_H
+#ifndef PNEVERLAND_EXCEPTIONS_CPP
+#define PNEVERLAND_EXCEPTIONS_CPP
 #include <exception>
 #include <string>
 using namespace std;
@@ -21,4 +18,4 @@ public:
     }
 };
 
-#endif //PNEVERLAND_EXCEPTIONS_H
+#endif //PNEVERLAND_EXCEPTIONS_CPP

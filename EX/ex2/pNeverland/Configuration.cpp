@@ -1,9 +1,9 @@
 
 
-#ifndef PNEVERLAND_CONFIGURATION_H
-#define PNEVERLAND_CONFIGURATION_H
-#include <string>
+#ifndef PNEVERLAND_CONFIGURATION_CPP
+#define PNEVERLAND_CONFIGURATION_CPP
 #include <map>
+#include <string>
 #include <iostream>
 
 using namespace std;
@@ -21,4 +21,4 @@ struct Configuration {
 };
 
 
-#endif //PNEVERLAND_CONFIGURATION_H
+#endif //PNEVERLAND_CONFIGURATION_CPP

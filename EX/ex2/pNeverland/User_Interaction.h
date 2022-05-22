@@ -8,7 +8,7 @@
 #include <iostream>
 #include "vector"
 #include "string"
-#include "exceptions.h"
+#include "exceptions.cpp"
 #include "Neverland.h"
 void initializing(int size, const char** files);
 void get_input();

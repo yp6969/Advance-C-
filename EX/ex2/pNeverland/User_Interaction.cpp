@@ -100,6 +100,7 @@ void get_input(){
                     if(data.size() != 3){
                         throw NeverlandException("ERROR : need to stations \n");
                     }
+                    N.uniExpress_multiExpress(data[0] , data[1] , data[2]);
                     ///TODO - uniExpress
 
             } else if (data[0] == "multiExpress") {
@@ -111,6 +112,8 @@ void get_input(){
             }
             else if (data[0] == "print") {
                 cout << N;
+                cout << endl;
+                N.print_configuration();
             }
             else if(data[0] == "EXIT" || data[0] == "exit"){
                 break;
