@@ -63,6 +63,8 @@ void initializing(int size, const char** files){
                 N.set_outputfile(input[++i]);
             }
         }
+        cout << N << endl;
+        N.uniExpress("A", "E");
     }
     catch(NeverlandException& e) { ///////ERROR ON INIT THE PROGRAM , EXIT -- TODO CHECK IF NEED TO DELETE N
         cout << e.what();
@@ -73,7 +75,6 @@ void initializing(int size, const char** files){
 void get_input(){
     /// Interaction with user -- simulation control
     string input;
-    cout << "LEST BEGIN:" << endl;
     while(true){
         vector<string> details;
         input= "";
@@ -98,9 +99,9 @@ void get_input(){
             } else if (data[0] == "uniExpress") {
                 /// get the shortest route between two stations -- without vehicle replacement
                     if(data.size() != 3){
-                        throw NeverlandException("ERROR : need to stations \n");
+                        throw NeverlandException("ERROR : need two stations \n");
                     }
-                    N.uniExpress_multiExpress(data[0] , data[1] , data[2]);
+                    N.uniExpress(data[1], data[2]);
 
             } else if (data[0] == "multiExpress") {
                 /// get the shortest route between two stations -- with vehicle replacement
@@ -111,8 +112,6 @@ void get_input(){
             }
             else if (data[0] == "print") {
                 cout << N;
-                cout << endl;
-                N.print_configuration();
             }
             else if(data[0] == "EXIT" || data[0] == "exit"){
                 break;

@@ -4,7 +4,7 @@
 #include "Graph.h"
 #include <iostream>
 #include <memory>
-#include "Configuration.cpp"
+#include "Configuration.h"
 
 /**
  * ENUM to represent the station type
@@ -37,10 +37,15 @@ public:
     void BFS(const string& type ,const string& station  , map< string,bool>& reachables );
     void inbound_outbound(const string& station ,const string& func);
     void set_outputfile(string filename);
-    void BFS1(const string& type  , const string& station , const string& prev_station  , map<string , bool>& reachable,map < string ,int > & route);
-    void set_max_time_route(const string& type ,const string& station, map <string , int >& route);
-    void uniExpress_multiExpress(const string& func , const string& source , const string& destination);
+    bool is_from_exist(const string &from);
 
+    bool is_to_exist(const string &node);
+
+    void uniExpress(const string &from, const string &to);
+
+    void dijkstra(Graph<string, int> &G, const string &source, const int& halt_time);
+
+    map<string, pair<int, bool>> create_dijkstra_map(const Graph<string, int>& graph);
 };
 
 #endif //PNEVERLAND_NEVERLAND_H
