@@ -4,7 +4,8 @@
 #include "Graph.h"
 #include <iostream>
 #include <memory>
-#include "Configuration.h"
+#include "Configuration.cpp"
+#include "exceptions.cpp"
 
 /**
  * ENUM to represent the station type
