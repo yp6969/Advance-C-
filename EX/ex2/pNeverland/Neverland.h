@@ -37,6 +37,15 @@ public:
     void BFS(const string& type ,const string& station  , map< string,bool>& reachables );
     void inbound_outbound(const string& station ,const string& func);
     void set_outputfile(string filename);
+    bool is_from_exist(const string &from);
+
+    bool is_to_exist(const string &node);
+
+    void uniExpress(const string &from, const string &to);
+
+    void dijkstra(Graph<string, int> &G, const string &source, const int& halt_time);
+
+    map<string, pair<int, bool>> create_dijkstra_map(const Graph<string, int>& graph);
 };
 
 #endif //PNEVERLAND_NEVERLAND_H
